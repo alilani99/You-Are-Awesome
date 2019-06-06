@@ -29,20 +29,36 @@ class ViewController: UIViewController {
         let message5 = "GOAT"
         let message6 = "You're the Realest"
         let message7 = "You Are #1"
-        let message8 = "Good Job Larry!"
+        let message8 = "Good Job Aidan!"
         let message9 = "oh noce"
         let message10 = "How can I slip if I'm the one doing the moppin?"
         
         let messages = [message1,message2,message3,message4,message5,message6,message7,message8,message9,message10]
         
-        messageLabel.text = messages[index]
-        if index == messages.count - 1 {
-            index = 0
-        } else {
-            index += 1
-            
-        }
+        var newIndex = -1
         
+        repeat {
+            newIndex = Int.random(in: 0..<messages.count)
+        } while index == newIndex
+        
+        index = newIndex
+        messageLabel.text = messages[index]
+        
+    
+        
+        
+        
+        
+        
+        
+//        messageLabel.text = messages[index]
+//        if index == messages.count - 1 {
+//            index = 0
+//        } else {
+//            index += 1
+//
+//        }
+//
         
         
         
