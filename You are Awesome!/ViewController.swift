@@ -13,14 +13,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     //Code below executes when the app first loads
     
-    var index = 0
+    var index = -1
+    var imageIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
        
     }
+    @IBOutlet weak var awesomeImageView: UIImageView!
     @IBAction func showMessagePressed(_ sender: UIButton) {
+        let numberOfImages = 8
+        
         
         let message1 = "You Are Awesome!"
         let message2 = "You Are Great!"
@@ -35,7 +39,7 @@ class ViewController: UIViewController {
         
         let messages = [message1,message2,message3,message4,message5,message6,message7,message8,message9,message10]
         
-        var newIndex = -1
+        var newIndex: Int
         
         repeat {
             newIndex = Int.random(in: 0..<messages.count)
@@ -44,35 +48,17 @@ class ViewController: UIViewController {
         index = newIndex
         messageLabel.text = messages[index]
         
+        repeat {
+            newIndex = Int.random(in: 0..<numberOfImages)
+        } while imageIndex == newIndex
+        
+        imageIndex = newIndex
+        awesomeImageView.image = UIImage(named: "image\(imageIndex)")
+        
+        
+        
+        
     
-        
-        
-        
-        
-        
-        
-//        messageLabel.text = messages[index]
-//        if index == messages.count - 1 {
-//            index = 0
-//        } else {
-//            index += 1
-//
-//        }
-//
-        
-        
-        
-//        let message1 = "You Are Awesome!"
-//        let message2 = "You Are Great!"
-//        let message3 = "You Are Amazing!"
-//
-//        if messageLabel.text == message1 {
-//            messageLabel.text = message2
-//        } else if messageLabel.text == message2 {
-//            messageLabel.text = message3
-//        } else {
-//            messageLabel.text = message1
-//        }
     }
     
     
