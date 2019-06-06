@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
     //Code below executes when the app first loads
     
+    var awesomePlayer = AVAudioPlayer()
+    var soundName = "sound0"
     var index = -1
     var imageIndex = -1
+    var soundIndex = -1
+    
+   
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var awesomeImageView: UIImageView!
     @IBAction func showMessagePressed(_ sender: UIButton) {
         let numberOfImages = 8
+        let numberOfSounds = 4
         
         
         let message1 = "You Are Awesome!"
@@ -55,6 +64,33 @@ class ViewController: UIViewController {
         imageIndex = newIndex
         awesomeImageView.image = UIImage(named: "image\(imageIndex)")
         
+        
+        
+        
+        
+        
+        repeat {
+            newIndex = Int.random(in: 0..<numberOfSounds)
+        } while soundIndex == newIndex
+        
+        soundIndex = newIndex
+        var soundName = "sound\(soundIndex)"
+        
+        
+
+        
+        if let sound = NSDataAsset(name: soundName) {
+            //if reading NSDataAsset didn't work. A file name error is likeley
+            
+            do {
+                try awesomePlayer = AVAudioPlayer(data: sound.data)
+                awesomePlayer.play()
+            } catch {
+                print("ERROR: data in \(soundName) couldn't be played as a sound")
+            }
+        } else  {
+            print("ERROR: file \(soundName) didn't load")
+        }
         
         
         
